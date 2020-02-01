@@ -42,7 +42,8 @@ func (s server) Run() error {
 		b, err := ioutil.ReadAll(resp.Body)
 		if err == nil {
 			// 替换手机号
-			b = bytes.Replace(b, x.Str2Bytes(`"mobile":""`), x.Str2Bytes(`"mobile":"13812911234"`), 1)
+			b = bytes.Replace(b, x.Str2Bytes(`"mobile":""`), x.Str2Bytes(`"mobile":"13812911234"`), -1)
+			b = bytes.Replace(b, x.Str2Bytes(`"mobile":null`), x.Str2Bytes(`"mobile":"13812911234"`), -1)
 			// create a new reader from b
 			resp.Body = ioutil.NopCloser(bytes.NewReader(b))
 		} else {
